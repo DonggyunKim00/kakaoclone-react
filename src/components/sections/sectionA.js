@@ -21,11 +21,15 @@ const TopPosition = styled.div`
 `;
 
 function sectionA() {
+  const hashtags = ["#브런치", "#브런치북", "#브런치 AI VOD 클래스"];
+
   return (
     <AllLayout>
       <SecLayout>
         <LargeBox
-          text={"카카오, 'AI VOD 클래스'로 브런치 작가들의 창작 무대 확대"}
+          hashtag={hashtags.map((value, idx) => (
+            <span key={idx}>{value}</span>
+          ))}
         />
       </SecLayout>
       <SecLayout>

@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import HeaderinBox from "../items/headerinbox";
+import StronginBox from "../items/stronginbox";
 
 const Lcontainer = styled.div`
+  display: flex;
   width: 630px;
   height: 700px;
   box-sizing: border-box;
@@ -9,36 +12,41 @@ const Lcontainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
+const InfoSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 25px 24px 0;
+  box-sizing: border-box;
+`;
+
 const Img = styled.img`
   width: 100%;
-  min-height: 100%;
+  min-height: 470px;
   background: url("https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/news/a57a93cd018300001.png?type=thumb&opt=C630x472")
     no-repeat;
-  background-size: contain;
 `;
 
-const BeforeImg = styled.img`
-  background: url(
-    data:image/svg + xml;charset=utf-8,
-    %3Csvgxmlns="http://www.w3.org/2000/svg"viewBox="0 0 18 18"%3E%3Cpathd="M0 0c3.003 2.178 4.963 5.706 4.961 9.699V18H18C18 8.059 9.941 0 0 0"fill="%23eee"fill-rule="evenodd"/%3E%3C/svg%3E
-  );
+const HashBox = styled.span`
+  margin: 24px 100px;
+  font-size: 14px;
+  display: flex;
+  color: #6d6d6d;
 `;
 
-function largeBox(props) {
+function largeBox({ hashtag }) {
   return (
     <div>
       <Lcontainer>
-        <span>
-          <img
-            src='https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72'
-            width='36'
-            height='36'
+        <InfoSpan>
+          <HeaderinBox />
+          <StronginBox
+            text={"카카오, 'AI VOD 클래스'로 브런치 작가들의 창작 무대 확대"}
           />
-        </span>
-        <span>
-          <BeforeImg />
-        </span>
-        <strong>{props.text}</strong>
+          <div>
+            <HashBox>{hashtag}</HashBox>
+          </div>
+        </InfoSpan>
         <Img />
       </Lcontainer>
     </div>
