@@ -3,7 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import Simage from "../myimages/simage";
 
-const BeforeImg = styled.img`
+const OuterFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+`;
+const BeforeImg = styled.div`
   display: inline-block;
   position: absolute;
   top: 0px;
@@ -14,16 +20,14 @@ const BeforeImg = styled.img`
 `;
 
 const SpanBox = styled.span`
-  display: inline-block;
   position: relative;
-  top: -13px;
-  left: 10px;
+  display: inline-block;
+  top: -10px;
   border-radius: 13px;
   padding: 0 13px;
   font-size: 13px;
   line-height: 34px;
   background-color: #eee;
-  margin-top: 1px;
 `;
 
 const FaSvg = styled.svg`
@@ -31,27 +35,29 @@ const FaSvg = styled.svg`
   width: 20px;
   height: 20px;
   color: #bbb;
-  top: -10px;
-  left: 460px;
-  margin: 0 auto;
+  margin: 0px 2px;
+  top: -5px;
 `;
 
-function headerinbox() {
+function headerinbox({ imgurl, spantxt }) {
   return (
-    <div>
-      <Simage
-        imageurl={
-          "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72"
-        }
-      />
-      <SpanBox>
-        <BeforeImg />
-        보도자료
-      </SpanBox>
+    <OuterFlex>
+      <div>
+        <Simage
+          imageurl={
+            imgurl ||
+            "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72"
+          }
+        />
+        <SpanBox>
+          <BeforeImg />
+          {spantxt || "보도 자료"}
+        </SpanBox>
+      </div>
       <FaSvg>
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </FaSvg>
-    </div>
+    </OuterFlex>
   );
 }
 
