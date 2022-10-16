@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import HeaderinBox from "../items/headerinbox";
-import StronginBox from "../items/stronginbox";
-import HashtaginBox from "../items/hashtaginbox";
+import HeaderinBox from "../items/Headerinbox";
+import StronginBox from "../items/Stronginbox";
+import HashtaginBox from "../items/Hashtaginbox";
 
 const Scontainer = styled.div`
   width: 297px;
@@ -25,7 +25,7 @@ const InfoSpan = styled.span`
 //     no-repeat;
 // `;
 
-function smallBox({
+function SmallBox({
   imgurl,
   spantxt,
   strongtxt,
@@ -51,4 +51,4 @@ function smallBox({
   );
 }
 
-export default smallBox;
+export default SmallBox;

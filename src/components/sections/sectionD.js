@@ -1,4 +1,4 @@
-function sectionD() {
+function SectionD() {
   return (
     <div>
       <div></div>
@@ -6,4 +6,4 @@ function sectionD() {
   );
 }
 
-export default sectionD;
+export default SectionD;

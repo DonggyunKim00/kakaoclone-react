@@ -4,7 +4,7 @@ const MarginImg = styled.span`
   margin-right: 8px;
 `;
 
-function simage({ imageurl }) {
+function Simage({ imageurl }) {
   return (
     <MarginImg>
       <img src={imageurl} alt='' width='36' height='36' />
@@ -12,4 +12,4 @@ function simage({ imageurl }) {
   );
 }
 
-export default simage;
+export default Simage;

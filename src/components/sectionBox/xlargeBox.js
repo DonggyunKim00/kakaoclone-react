@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Stronginbox from "../items/stronginbox";
+import Stronginbox from "../items/Stronginbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -39,7 +39,7 @@ const Img = styled.div`
     no-repeat;
   background-size: contain;
 `;
-function xlargeBox({ strongtxt }) {
+function XlargeBox({ strongtxt }) {
   return (
     <div>
       <XLcontainer>
@@ -56,4 +56,4 @@ function xlargeBox({ strongtxt }) {
   );
 }
 
-export default xlargeBox;
+export default XlargeBox;

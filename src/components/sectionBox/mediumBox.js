@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import HeaderinBox from "../items/headerinbox";
-import StronginBox from "../items/stronginbox";
-import HashtaginBox from "../items/hashtaginbox";
+import HeaderinBox from "../items/Headerinbox";
+import StronginBox from "../items/Stronginbox";
+import HashtaginBox from "../items/Hashtaginbox";
 
 const Mcontainer = styled.div`
   width: 297px;
@@ -26,7 +26,7 @@ const Img = styled.div`
   background-size: contain;
 `;
 
-function mediumBox({ strongtxt, hashtag }) {
+function MediumBox({ strongtxt, hashtag }) {
   return (
     <div>
       <Mcontainer>
@@ -45,4 +45,4 @@ function mediumBox({ strongtxt, hashtag }) {
   );
 }
 
-export default mediumBox;
+export default MediumBox;

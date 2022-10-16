@@ -12,7 +12,7 @@ const Strong = styled.strong`
   letter-spacing: -1px;
 `;
 
-function stronginbox({ strongtxt, fontSize, lineHeight }) {
+function Stronginbox({ strongtxt, fontSize, lineHeight }) {
   return (
     <OuterDiv>
       <Strong size={fontSize} lh={lineHeight}>
@@ -22,4 +22,4 @@ function stronginbox({ strongtxt, fontSize, lineHeight }) {
   );
 }
 
-export default stronginbox;
+export default Stronginbox;

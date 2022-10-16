@@ -7,7 +7,7 @@ const HashBox = styled.div`
   color: #6d6d6d;
 `;
 
-function hashtaginbox({ hashtag }) {
+function Hashtaginbox({ hashtag }) {
   return (
     <div>
       <HashBox>{hashtag}</HashBox>
@@ -15,4 +15,4 @@ function hashtaginbox({ hashtag }) {
   );
 }
 
-export default hashtaginbox;
+export default Hashtaginbox;

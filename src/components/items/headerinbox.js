@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import Simage from "../myimages/simage";
+import Simage from "../myimages/Simage";
 
 const OuterFlex = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ const FaSvg = styled.svg`
   top: -5px;
 `;
 
-function headerinbox({ imgurl, spantxt }) {
+function Headerinbox({ imgurl, spantxt }) {
   return (
     <OuterFlex>
       <div>
@@ -61,4 +61,4 @@ function headerinbox({ imgurl, spantxt }) {
   );
 }
 
-export default headerinbox;
+export default Headerinbox;

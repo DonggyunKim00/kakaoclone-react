@@ -1,8 +1,8 @@
-import MainTitle from "./maintitle";
-import SectionA from "./sections/sectionA";
-import SectionB from "./sections/sectionB";
-import SectionC from "./sections/sectionC";
-import SectionD from "./sections/sectionD";
+import MainTitle from "./Maintitle";
+import SectionA from "./sections/SectionA";
+import SectionB from "./sections/SectionB";
+import SectionC from "./sections/SectionC";
+import SectionD from "./sections/SectionD";
 import styled from "styled-components";
 
 const AllSec = styled.div`
@@ -10,10 +10,10 @@ const AllSec = styled.div`
   padding: 96px 0 0;
 `;
 
-function maincontent() {
+function Maincontent({ imgnum }) {
   return (
     <div>
-      <MainTitle />
+      <MainTitle imgnum={imgnum} />
       <AllSec>
         <SectionA />
         <SectionB />
@@ -24,4 +24,4 @@ function maincontent() {
   );
 }
 
-export default maincontent;
+export default Maincontent;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import HeaderinBox from "../items/headerinbox";
-import StronginBox from "../items/stronginbox";
-import HashtaginBox from "../items/hashtaginbox";
+import HeaderinBox from "../items/Headerinbox";
+import StronginBox from "../items/Stronginbox";
+import HashtaginBox from "../items/Hashtaginbox";
 
 const Lcontainer = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const Img = styled.div`
     no-repeat;
 `;
 
-function largeBox({ strongtxt, hashtag }) {
+function LargeBox({ strongtxt, hashtag }) {
   return (
     <div>
       <Lcontainer>
@@ -43,4 +43,4 @@ function largeBox({ strongtxt, hashtag }) {
   );
 }
 
-export default largeBox;
+export default LargeBox;

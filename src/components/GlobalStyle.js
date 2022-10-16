@@ -10,8 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: KakaoSmall,Apple SD Gothic Neo,Malgun Gothic,맑은 고딕,sans-serif;;
     font-wieght: 400;
     font-size: 14px;
-    max-width: 1296px;
-    margin: 0 auto;
+    word-break: keep-all;
   }
   
   h1{
