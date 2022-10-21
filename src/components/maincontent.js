@@ -5,14 +5,9 @@ import SectionC from "./sections/SectionC";
 import SectionD from "./sections/SectionD";
 import styled from "styled-components";
 
-const AllSec = styled.div`
-  margin: 0 -18px;
-  padding: 96px 0 0;
-`;
-
-function Maincontent({ imgnum }) {
+function Maincontent({ className, imgnum }) {
   return (
-    <div>
+    <div className={className}>
       <MainTitle imgnum={imgnum} />
       <AllSec>
         <SectionA />
@@ -23,5 +18,9 @@ function Maincontent({ imgnum }) {
     </div>
   );
 }
-
 export default Maincontent;
+
+const AllSec = styled.div`
+  margin: 0 -18px;
+  padding: 96px 0 0;
+`;

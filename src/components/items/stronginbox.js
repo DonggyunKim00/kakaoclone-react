@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-const OuterDiv = styled.div`
-  margin: 13px 0 0;
-`;
-const Strong = styled.strong`
-  top: 40px;
-  max-height: 92px;
-  height: 92px;
-  font-size: ${(props) => props.size || "32px"};
-  line-height: ${(props) => props.lh || "46px"};
-  letter-spacing: -1px;
-`;
-
 function Stronginbox({ strongtxt, fontSize, lineHeight }) {
   return (
     <OuterDiv>
@@ -23,3 +11,15 @@ function Stronginbox({ strongtxt, fontSize, lineHeight }) {
 }
 
 export default Stronginbox;
+
+const OuterDiv = styled.div`
+  margin: 13px 0 0;
+`;
+const Strong = styled.strong`
+  top: 40px;
+  max-height: 92px;
+  height: 92px;
+  font-size: ${(props) => props.size || "32px"};
+  line-height: ${(props) => props.lh || "46px"};
+  letter-spacing: -1px;
+`;

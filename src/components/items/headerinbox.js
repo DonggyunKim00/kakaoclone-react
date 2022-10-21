@@ -3,6 +3,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import Simage from "../myimages/Simage";
 
+function Headerinbox({ imgurl, spantxt }) {
+  return (
+    <OuterFlex>
+      <div>
+        <Simage
+          imageurl={
+            imgurl ||
+            "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72"
+          }
+        />
+        <SpanBox>
+          <BeforeImg />
+          {spantxt || "보도 자료"}
+        </SpanBox>
+      </div>
+      <FaSvg>
+        <FontAwesomeIcon icon={faEllipsisVertical} />
+      </FaSvg>
+    </OuterFlex>
+  );
+}
+
+export default Headerinbox;
+
 const OuterFlex = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,27 +62,3 @@ const FaSvg = styled.svg`
   margin: 0px 2px;
   top: -5px;
 `;
-
-function Headerinbox({ imgurl, spantxt }) {
-  return (
-    <OuterFlex>
-      <div>
-        <Simage
-          imageurl={
-            imgurl ||
-            "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72"
-          }
-        />
-        <SpanBox>
-          <BeforeImg />
-          {spantxt || "보도 자료"}
-        </SpanBox>
-      </div>
-      <FaSvg>
-        <FontAwesomeIcon icon={faEllipsisVertical} />
-      </FaSvg>
-    </OuterFlex>
-  );
-}
-
-export default Headerinbox;

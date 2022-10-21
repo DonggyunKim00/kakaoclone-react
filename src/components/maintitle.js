@@ -1,27 +1,6 @@
 import styled from "styled-components";
 import TodayDate from "./items/TodayDate";
 
-const Maintit = styled.div`
-  padding-top: 96px;
-  font-size: 46px;
-  font-weight: 700;
-  line-height: 66px;
-  background: url("https://www.kakaocorp.com/page/calendar/light/ico_date${(
-      props
-    ) => props.imgnum || 1}.gif")
-    no-repeat 0 94px;
-  background-size: 72px 72px;
-  letter-spacing: -1px;
-`;
-const Texttit = styled.h3`
-  display: flex;
-  flex-direction: column;
-`;
-const StyledEm = styled.em`
-  font-style: normal;
-  padding-left: 84px;
-`;
-
 function Maintitle({ imgnum }) {
   return (
     <div>
@@ -34,5 +13,25 @@ function Maintitle({ imgnum }) {
     </div>
   );
 }
-
 export default Maintitle;
+
+const Maintit = styled.div`
+  padding-top: 96px;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 66px;
+  background: ${({ imgnum }) =>
+      `url(https://www.kakaocorp.com/page/calendar/light/ico_date${imgnum}.gif)` ||
+      1}
+    no-repeat 0 94px;
+  background-size: 72px 72px;
+  letter-spacing: -1px;
+`;
+const Texttit = styled.h3`
+  display: flex;
+  flex-direction: column;
+`;
+const StyledEm = styled.em`
+  font-style: normal;
+  padding-left: 84px;
+`;

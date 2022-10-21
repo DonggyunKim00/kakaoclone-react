@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: KakaoSmall,Apple SD Gothic Neo,Malgun Gothic,맑은 고딕,sans-serif;;
-    font-wieght: 400;
+    font-weight: 400;
     font-size: 14px;
     word-break: keep-all;
   }
@@ -18,9 +18,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
-  svg{
-    margin-right: 24px;
-  }
 
 `;
 

@@ -3,6 +3,25 @@ import Stronginbox from "../items/Stronginbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+function XlargeBox({ strongtxt }) {
+  return (
+    <div>
+      <XLcontainer>
+        <Stronginbox fontSize={"42px"} strongtxt={strongtxt} />
+        <CultureBtn>
+          카카오문화 바로가기
+          <FaArrow>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </FaArrow>
+        </CultureBtn>
+        <Img />
+      </XLcontainer>
+    </div>
+  );
+}
+
+export default XlargeBox;
+
 const XLcontainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,21 +58,3 @@ const Img = styled.div`
     no-repeat;
   background-size: contain;
 `;
-function XlargeBox({ strongtxt }) {
-  return (
-    <div>
-      <XLcontainer>
-        <Stronginbox fontSize={"42px"} strongtxt={strongtxt} />
-        <CultureBtn>
-          카카오문화 바로가기
-          <FaArrow>
-            <FontAwesomeIcon icon={faArrowRight} />
-          </FaArrow>
-        </CultureBtn>
-        <Img />
-      </XLcontainer>
-    </div>
-  );
-}
-
-export default XlargeBox;

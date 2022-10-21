@@ -4,29 +4,6 @@ import MediumBox from "../sectionBox/MediumBox";
 import SmallBox from "../sectionBox/SmallBox";
 import dummy from "../../dummy/hashtag.json";
 
-const AllLayout = styled.div`
-  display: flex;
-`;
-const SecLayout = styled.div`
-  width: 630px;
-  height: 763px;
-  padding: 0 18px;
-  margin: 0px;
-`;
-const InnerContaier = styled.div`
-  width: 630px;
-  height: 648px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-content: space-between;
-  padding: 0 18px;
-`;
-const TopPosition = styled.div`
-  position: relative;
-  top: -228px;
-`;
-
 function SectionA() {
   return (
     <AllLayout>
@@ -79,3 +56,26 @@ function SectionA() {
 }
 
 export default SectionA;
+
+const AllLayout = styled.div`
+  display: flex;
+`;
+const SecLayout = styled.div`
+  width: 630px;
+  height: 763px;
+  padding: 0 18px;
+  margin: 0px;
+`;
+const InnerContaier = styled.div`
+  width: 630px;
+  height: 648px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 0 18px;
+`;
+const TopPosition = styled.div`
+  position: relative;
+  top: -228px;
+`;

@@ -4,16 +4,80 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faBurger } from "@fortawesome/free-solid-svg-icons";
 
+function Header({ imgnum, getClickEvent, isClick }) {
+  const [hiddenCal, setHiddenCal] = useState(true);
+  const [isWheelDown, setIsWheelDown] = useState(false);
+
+  const showHiddenCal = () => {
+    if (window.scrollY > 100) {
+      setHiddenCal(false);
+    } else {
+      setHiddenCal(true);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", showHiddenCal);
+    return () => window.removeEventListener("scroll", showHiddenCal);
+  }, []);
+
+  const handleWheel = (e) => {
+    if (window.scrollY >= 160) {
+      const direction = e.deltaY > 0 ? true : false;
+      setIsWheelDown(direction);
+    } else if (window.scrollY > 0 && window.scrollY < 100) {
+      setIsWheelDown(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("mousewheel", handleWheel);
+    return () => window.removeEventListener("mousewheel", handleWheel);
+  }, []);
+
+  const onClick = () => {
+    getClickEvent(true);
+  };
+  return (
+    <>
+      <HeaderDiv hidden={isWheelDown} isClick={isClick}>
+        <StyledHeader>
+          <h1>kakao</h1>
+          <div>
+            <FontAwesomeIcon
+              onClick={onClick}
+              type='button'
+              icon={faMagnifyingGlass}
+              size='2x'
+              className='searchBtn'
+            />
+            <FontAwesomeIcon type='button' icon={faBurger} size='2x' />
+          </div>
+        </StyledHeader>
+      </HeaderDiv>
+      <HiddenSec hidden={hiddenCal}>
+        <HiddenCalHeader>
+          <ContentDiv>
+            <HiddenCalImg imgnum={imgnum} />
+            <HiddenCalStr>오늘의 카카오</HiddenCalStr>
+          </ContentDiv>
+        </HiddenCalHeader>
+      </HiddenSec>
+    </>
+  );
+}
+
+export default Header;
+
 const HeaderDiv = styled.div`
+  visibility: ${({ hidden }) => (hidden ? "hidden" : "visible")};
   border-bottom: 1px solid #eee;
-  position: sticky;
+  position: ${({ isClick }) => (isClick ? "static" : "sticky")};
   top: 0;
   background-color: white;
-  z-index: 1000;
+  z-index: 2;
   box-sizing: border-box;
 `;
 const StyledHeader = styled.div`
-  display: ${(props) => (props.hidden ? "none" : "flex")};
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding-top: 18px;
@@ -21,15 +85,18 @@ const StyledHeader = styled.div`
   max-width: 1296px;
   margin: 0 auto;
   box-sizing: border-box;
+  .searchBtn {
+    margin-right: 24px;
+  }
 `;
 
 const HiddenSec = styled.section`
-  display: ${(props) => (props.hidden ? "none" : "block")};
+  visibility: ${({ hidden }) => (hidden ? "hidden" : "visible")};
   position: fixed;
   width: 100%;
   border-bottom: 1px solid #eee;
   background-color: white;
-  z-index: 1000;
+  z-index: 4001;
 `;
 
 const HiddenCalHeader = styled.div`
@@ -47,9 +114,8 @@ const ContentDiv = styled.div`
 const HiddenCalImg = styled.img`
   width: 36px;
   height: 36px;
-  content: url("https://www.kakaocorp.com/page/calendar/light/ico_date${(
-    props
-  ) => props.imgnum || 1}.gif");
+  content: ${({ imgnum }) =>
+    `url(https://www.kakaocorp.com/page/calendar/light/ico_date${imgnum}.gif)`};
   margin-right: 7px;
 `;
 const HiddenCalStr = styled.strong`
@@ -60,69 +126,3 @@ const HiddenCalStr = styled.strong`
   line-height: 29px;
   letter-spacing: -0.28px;
 `;
-
-function Header({ imgnum }) {
-  const [scroll, setScroll] = useState(true);
-  const [scrollValue, setScrollValue] = useState(window.scrollY);
-  const [updown, setUpdown] = useState(false);
-
-  const handleScroll = () => {
-    if (window.scrollY >= 160 || updown == true) {
-      setScroll(false);
-    } else {
-      setScroll(true);
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // 스크롤이 160px 이상내려가면 다음 조건들
-  // 스크롤이 내려가면 down => header의 display none
-  // 스크롤이 올라가면 up => header의 display on
-  // prev < curr ? scrolldown : scrollup
-
-  const handleScrollValue = () => {
-    setScrollValue(window.scrollY);
-    if (window.scrollY >= 165) {
-      if (scrollValue < window.scrollY) {
-        setUpdown(true);
-      } else {
-        setUpdown(false);
-      }
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", handleScrollValue);
-    return () => window.removeEventListener("scroll", handleScrollValue);
-  }, []);
-
-  console.log(scrollValue);
-  console.log(updown);
-
-  return (
-    <>
-      <HeaderDiv>
-        <StyledHeader hidden={updown}>
-          <h1>kakao</h1>
-          <div>
-            <FontAwesomeIcon icon={faMagnifyingGlass} size='2x' />
-            <FontAwesomeIcon icon={faBurger} size='2x' />
-          </div>
-        </StyledHeader>
-      </HeaderDiv>
-
-      <HiddenSec hidden={scroll}>
-        <HiddenCalHeader>
-          <ContentDiv>
-            <HiddenCalImg imgnum={imgnum} />
-            <HiddenCalStr>오늘의 카카오</HiddenCalStr>
-          </ContentDiv>
-        </HiddenCalHeader>
-      </HiddenSec>
-    </>
-  );
-}
-
-export default Header;
