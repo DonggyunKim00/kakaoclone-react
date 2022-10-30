@@ -21,8 +21,7 @@ const Maintit = styled.div`
   font-weight: 700;
   line-height: 66px;
   background: ${({ imgnum }) =>
-      `url(https://www.kakaocorp.com/page/calendar/light/ico_date${imgnum}.gif)` ||
-      1}
+      `url(https://www.kakaocorp.com/page/calendar/png/${imgnum}.png)` || 1}
     no-repeat 0 94px;
   background-size: 72px 72px;
   letter-spacing: -1px;

@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
 import Header from "./components/Header";
 import GlobalStyle from "./components/GlobalStyle";
 import Maincontent from "./components/Maincontent";
@@ -13,7 +13,7 @@ function App() {
   const time = new Date();
   let imgnum = time.getDate();
 
-  // header의 버튼 인지 => isClick : true
+  // header의 search 버튼 인지 => isClick : true
   const getClickEvent = (isClick) => {
     setIsClick(isClick);
     setChangeClass("visible");
@@ -24,20 +24,17 @@ function App() {
     setChangeClass("hidden");
   };
 
-  console.log(isClick);
-  console.log(changeClass);
-
   return (
     <>
       <GlobalStyle />
-      <Header isClick={isClick} imgnum={imgnum} getClickEvent={getClickEvent} />
+      <Header isClick={isClick} mgnum={imgnum} getClickEvent={getClickEvent} />
       <BodyDiv>
         <Maincontent className={changeClass} imgnum={imgnum} />
         <Footer />
       </BodyDiv>
-      <HiddenSec>
+      <HiddenOpenSec>
         <OpenSearch className={changeClass} getClickEvent2={getClickEvent2} />
-      </HiddenSec>
+      </HiddenOpenSec>
     </>
   );
 }
@@ -56,7 +53,7 @@ const BodyDiv = styled.div`
     transition: transform 0.6s;
   }
 `;
-const HiddenSec = styled.div`
+const HiddenOpenSec = styled.div`
   .visible {
     visibility: visible;
     opacity: 1;

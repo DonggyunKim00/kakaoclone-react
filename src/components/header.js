@@ -7,6 +7,7 @@ import { faBurger } from "@fortawesome/free-solid-svg-icons";
 function Header({ imgnum, getClickEvent, isClick }) {
   const [hiddenCal, setHiddenCal] = useState(true);
   const [isWheelDown, setIsWheelDown] = useState(false);
+  const [classControl, setClassControl] = useState("headerVisible");
 
   const showHiddenCal = () => {
     if (window.scrollY > 100) {
@@ -21,11 +22,13 @@ function Header({ imgnum, getClickEvent, isClick }) {
   }, []);
 
   const handleWheel = (e) => {
+    const direction = e.deltaY > 0 ? true : false;
     if (window.scrollY >= 160) {
-      const direction = e.deltaY > 0 ? true : false;
       setIsWheelDown(direction);
+      setClassControl(direction ? "headerHidden" : "headerVisible");
     } else if (window.scrollY > 0 && window.scrollY < 100) {
       setIsWheelDown(false);
+      setClassControl("headerVisible");
     }
   };
   useEffect(() => {
@@ -35,10 +38,17 @@ function Header({ imgnum, getClickEvent, isClick }) {
 
   const onClick = () => {
     getClickEvent(true);
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
   };
+
   return (
     <>
-      <HeaderDiv hidden={isWheelDown} isClick={isClick}>
+      <HeaderDiv
+        hidden={isWheelDown}
+        className={classControl}
+        isClick={isClick}
+      >
         <StyledHeader>
           <h1>kakao</h1>
           <div>
@@ -53,7 +63,7 @@ function Header({ imgnum, getClickEvent, isClick }) {
           </div>
         </StyledHeader>
       </HeaderDiv>
-      <HiddenSec hidden={hiddenCal}>
+      <HiddenSec className={classControl} hidden={hiddenCal}>
         <HiddenCalHeader>
           <ContentDiv>
             <HiddenCalImg imgnum={imgnum} />
@@ -68,14 +78,23 @@ function Header({ imgnum, getClickEvent, isClick }) {
 export default Header;
 
 const HeaderDiv = styled.div`
-  visibility: ${({ hidden }) => (hidden ? "hidden" : "visible")};
   border-bottom: 1px solid #eee;
   position: ${({ isClick }) => (isClick ? "static" : "sticky")};
   top: 0;
   background-color: white;
   z-index: 2;
   box-sizing: border-box;
+
+  .headerVisible {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .headerHidden {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
 `;
+
 const StyledHeader = styled.div`
   display: flex;
   align-items: center;
@@ -91,12 +110,22 @@ const StyledHeader = styled.div`
 `;
 
 const HiddenSec = styled.section`
-  visibility: ${({ hidden }) => (hidden ? "hidden" : "visible")};
   position: fixed;
   width: 100%;
   border-bottom: 1px solid #eee;
   background-color: white;
   z-index: 4001;
+
+  .headerVisible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+  .headerHidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
 `;
 
 const HiddenCalHeader = styled.div`
@@ -115,9 +144,10 @@ const HiddenCalImg = styled.img`
   width: 36px;
   height: 36px;
   content: ${({ imgnum }) =>
-    `url(https://www.kakaocorp.com/page/calendar/light/ico_date${imgnum}.gif)`};
+    `url(https://www.kakaocorp.com/page/calendar/png/${imgnum}.png)` || 1};
   margin-right: 7px;
 `;
+//https://www.kakaocorp.com/page/calendar/png/30.png
 const HiddenCalStr = styled.strong`
   display: inline-block;
   margin: 2px 0 1px;

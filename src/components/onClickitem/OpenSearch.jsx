@@ -11,6 +11,7 @@ import { BiSearch } from "react-icons/bi";
 export default function OpenSearch({ className, getClickEvent2 }) {
   const onClick = () => {
     getClickEvent2(false);
+    document.body.style.overflow = "auto";
   };
   return (
     <div className={className}>
@@ -55,11 +56,12 @@ const OuterSec = styled.section`
 `;
 
 const InnerLayer = styled.div`
-  position: relative;
+  position: absolute;
   background-color: white;
   margin-bottom: -190px;
   z-index: 4001;
-  top: -1760px;
+  width: 100%;
+  top: 0;
 
   .header {
     display: flex;
