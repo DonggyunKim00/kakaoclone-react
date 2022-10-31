@@ -32,7 +32,7 @@ export default function OpenSearch({ className, getClickEvent2 }) {
             <input type='text' placeholder='무엇이 궁금하신가요?' />
           </form>
           <TagBox>
-            {dummy.hasharr[4].item.map((value, idx) => (
+            {dummy.hasharr[5].item.map((value, idx) => (
               <SpanBox key={idx}>
                 <a href='/'>{value}</a>
               </SpanBox>

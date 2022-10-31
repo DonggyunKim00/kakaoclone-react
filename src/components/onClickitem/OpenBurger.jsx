@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import { SiKakao } from "react-icons/si";
-export default function OpenBurger() {
+export default function OpenBurger({ getClickEvent4 }) {
+  const onClick = () => {
+    getClickEvent4(false);
+  };
   return (
     <OuterDiv>
       <InnerDiv>
         <div className='header'>
-          <SiKakao className='logo' size='75' />
-          <VscChromeClose className='closeBtn' type='button' size='28' />
+          <SiKakao size='75' />
+          <VscChromeClose onClick={onClick} type='button' size='28' />
         </div>
         <div className='innerContent'>
           <ul>
@@ -43,23 +46,29 @@ export default function OpenBurger() {
   );
 }
 const OuterDiv = styled.div`
+  display: flex;
+  justify-content: center;
   background-color: white;
   z-index: 99999;
   position: absolute;
+  min-height: 100%;
   width: 100%;
   top: 0;
-  height: 100vh;
 `;
 
 const InnerDiv = styled.div`
   display: flex;
-  position: relative;
-  max-width: 412px;
-  height: 100%;
+  flex-direction: column;
+  min-width: 412px;
   padding-bottom: 36px;
   box-sizing: border-box;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
+
+  .innerContent {
+    flex: 1;
+    padding: 47px 0 66px;
+    box-sizing: border-box;
+  }
   .header {
     display: flex;
     align-items: center;

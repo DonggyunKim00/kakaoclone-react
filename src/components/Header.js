@@ -4,7 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faBurger } from "@fortawesome/free-solid-svg-icons";
 
-function Header({ imgnum, getClickEvent, isClick }) {
+function Header({
+  imgnum,
+  getClickEvent,
+  isClick,
+  getClickEvent3,
+  burgerClick,
+}) {
   const [hiddenCal, setHiddenCal] = useState(true);
   const [isWheelDown, setIsWheelDown] = useState(false);
   const [classControl, setClassControl] = useState("headerVisible");
@@ -42,6 +48,10 @@ function Header({ imgnum, getClickEvent, isClick }) {
     document.body.style.overflow = "hidden";
   };
 
+  const onClick2 = () => {
+    getClickEvent3(true);
+  };
+
   return (
     <>
       <HeaderDiv
@@ -59,7 +69,12 @@ function Header({ imgnum, getClickEvent, isClick }) {
               size='2x'
               className='searchBtn'
             />
-            <FontAwesomeIcon type='button' icon={faBurger} size='2x' />
+            <FontAwesomeIcon
+              onClick={onClick2}
+              type='button'
+              icon={faBurger}
+              size='2x'
+            />
           </div>
         </StyledHeader>
       </HeaderDiv>
@@ -147,7 +162,6 @@ const HiddenCalImg = styled.img`
     `url(https://www.kakaocorp.com/page/calendar/png/${imgnum}.png)` || 1};
   margin-right: 7px;
 `;
-//https://www.kakaocorp.com/page/calendar/png/30.png
 const HiddenCalStr = styled.strong`
   display: inline-block;
   margin: 2px 0 1px;
