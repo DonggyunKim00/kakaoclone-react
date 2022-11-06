@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import LargeBox from "../sectionBox/LargeBox";
 import MediumBox from "../sectionBox/MediumBox";
@@ -5,6 +6,17 @@ import SmallBox from "../sectionBox/SmallBox";
 import dummy from "../../dummy/hashtag.json";
 
 function SectionA() {
+  const [ellipseClick1, setEllipseClick1] = useState(false);
+  // const [ellipseClick2, setEllipseClick2] = useState(false);
+  // const [ellipseClick3, setEllipseClick3] = useState(false);
+  // const [ellipseClick4, setEllipseClick4] = useState(false);
+  // const [ellipseClick5, setEllipseClick5] = useState(false);
+
+  const getisClickElip = () => {
+    setEllipseClick1(ellipseClick1);
+  };
+
+  console.log(ellipseClick1);
   return (
     <AllLayout>
       <SecLayout>
@@ -13,6 +25,7 @@ function SectionA() {
           hashtag={dummy.hasharr[0].item.map((value, idx) => (
             <span key={idx}>{value}</span>
           ))}
+          getisClickElip={getisClickElip}
         />
       </SecLayout>
       <SecLayout>

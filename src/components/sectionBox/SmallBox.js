@@ -36,6 +36,7 @@ const Scontainer = styled.div`
   height: 192px;
   box-sizing: border-box;
   box-shadow: 2px 5px 40px 0 rgb(0 0 0 / 8%);
+  border-radius: 14px;
 `;
 
 const InfoSpan = styled.span`

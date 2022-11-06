@@ -1,37 +1,46 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { FaEllipsisV } from "react-icons/fa";
 import Simage from "../myimages/Simage";
 
-function Headerinbox({ imgurl, spantxt }) {
+function Headerinbox({ imgurl, spantxt, getisClickElip }) {
+  // const onClick = () => {
+  //   getisClickElip(true);
+  // };
+
+  console.log(getisClickElip);
   return (
-    <OuterFlex>
-      <div>
-        <Simage
-          imageurl={
-            imgurl ||
-            "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72"
-          }
-        />
-        <SpanBox>
-          <BeforeImg />
-          {spantxt || "보도 자료"}
-        </SpanBox>
-      </div>
-      <FaSvg>
-        <FontAwesomeIcon icon={faEllipsisVertical} />
-      </FaSvg>
-    </OuterFlex>
+    <>
+      <OuterFlex>
+        <div>
+          <Simage
+            imageurl={
+              imgurl ||
+              "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/6562f7bc017800001.png?type=thumb&opt=C72x72"
+            }
+          />
+          <SpanBox>
+            <BeforeImg />
+            {spantxt || "보도 자료"}
+          </SpanBox>
+        </div>
+        <div className='colorGray'>
+          <FaEllipsisV type='button' size='20' />
+        </div>
+      </OuterFlex>
+    </>
   );
 }
 
 export default Headerinbox;
-
 const OuterFlex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 36px;
+
+  .colorGray {
+    color: #bbb;
+  }
 `;
 const BeforeImg = styled.div`
   display: inline-block;
@@ -52,13 +61,4 @@ const SpanBox = styled.span`
   font-size: 13px;
   line-height: 34px;
   background-color: #eee;
-`;
-
-const FaSvg = styled.svg`
-  position: relative;
-  width: 20px;
-  height: 20px;
-  color: #bbb;
-  margin: 0px 2px;
-  top: -5px;
 `;

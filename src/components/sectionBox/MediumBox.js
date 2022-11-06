@@ -29,6 +29,7 @@ const Mcontainer = styled.div`
   height: 420px;
   box-sizing: border-box;
   box-shadow: 2px 5px 40px 0 rgb(0 0 0 / 8%);
+  border-radius: 14px;
 `;
 
 const InfoSpan = styled.span`
@@ -41,6 +42,8 @@ const InfoSpan = styled.span`
 const Img = styled.div`
   width: 100%;
   height: 223px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
   background: url("https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/news/a094467d018300001.jpeg?type=thumb&opt=C630x472")
     no-repeat;
   background-size: contain;

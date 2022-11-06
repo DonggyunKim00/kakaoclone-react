@@ -3,12 +3,12 @@ import HeaderinBox from "../items/Headerinbox";
 import StronginBox from "../items/Stronginbox";
 import HashtaginBox from "../items/Hashtaginbox";
 
-function LargeBox({ strongtxt, hashtag }) {
+function LargeBox({ strongtxt, hashtag, getisClickElip }) {
   return (
     <div>
       <Lcontainer>
         <InfoSpan>
-          <HeaderinBox text={"보도자료"} />
+          <HeaderinBox getisClickElip={getisClickElip} text={"보도자료"} />
           <StronginBox strongtxt={strongtxt} />
           <HashtaginBox hashtag={hashtag} />
         </InfoSpan>
@@ -26,6 +26,7 @@ const Lcontainer = styled.div`
   box-sizing: border-box;
   max-width: 666px;
   flex-direction: column;
+  border-radius: 14px;
   box-shadow: 2px 5px 40px 0 rgb(0 0 0 / 8%);
 `;
 
@@ -39,6 +40,8 @@ const InfoSpan = styled.span`
 const Img = styled.div`
   width: 100%;
   min-height: 470px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
   background: url("https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/news/a57a93cd018300001.png?type=thumb&opt=C630x472")
     no-repeat;
 `;
