@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import LargeBox from "../sectionBox/LargeBox";
 import MediumBox from "../sectionBox/MediumBox";
@@ -6,66 +5,55 @@ import SmallBox from "../sectionBox/SmallBox";
 import dummy from "../../dummy/hashtag.json";
 
 function SectionA() {
-  const [ellipseClick1, setEllipseClick1] = useState(false);
-  // const [ellipseClick2, setEllipseClick2] = useState(false);
-  // const [ellipseClick3, setEllipseClick3] = useState(false);
-  // const [ellipseClick4, setEllipseClick4] = useState(false);
-  // const [ellipseClick5, setEllipseClick5] = useState(false);
-
-  const getisClickElip = () => {
-    setEllipseClick1(ellipseClick1);
-  };
-
-  console.log(ellipseClick1);
   return (
     <AllLayout>
-      <SecLayout>
+      <SecLayout1>
         <LargeBox
-          strongtxt={"카카오, 'AI VOD 클래스'로 브런치 작가들의 창작 무대 확대"}
+          strongtxt="데이터센터 화재로 인한 서비스 장애 '피해 사례 접수' 종료 안내
+          "
           hashtag={dummy.hasharr[0].item.map((value, idx) => (
             <span key={idx}>{value}</span>
           ))}
-          getisClickElip={getisClickElip}
         />
-      </SecLayout>
-      <SecLayout>
+      </SecLayout1>
+      <SecLayout2>
         <InnerContaier>
           <MediumBox
-            strongtxt={"카카오메이커스-카카오브레인'세계 동물..."}
+            strongtxt='데이터센터 화재로 인한 카카오 대표 대국민 사과문'
             hashtag={dummy.hasharr[1].item.map((value, idx) => (
               <span key={idx}>{value}</span>
             ))}
           />
           <SmallBox
-            imgurl={"https://www.kakaocorp.com/page/ico_stock.png"}
-            spantxt={"주가 정보"}
-            fontSize={"40px"}
-            lineHeight={"59px"}
-            strongtxt={"100"}
+            imgurl='https://www.kakaocorp.com/page/ico_stock.png'
+            spantxt='주가 정보'
+            fontSize='40px'
+            lineHeight='59px'
+            strongtxt='100'
             hashtag={dummy.hasharr[2].item.map((value, idx) => (
               <span key={idx}>{value}</span>
             ))}
           />
           <SmallBox
-            imgurl={"https://www.kakaocorp.com/page/ico_responsible.png"}
-            spantxt={"약속과 책임"}
-            strongtxt={"ESG보고서, 카카오의 약속과 책임"}
+            imgurl='https://www.kakaocorp.com/page/ico_responsible.png'
+            spantxt='약속과 책임'
+            strongtxt='ESG보고서, 카카오의 약속과 책임'
             hashtag={dummy.hasharr[3].item.map((value, idx) => (
               <span key={idx}>{value}</span>
             ))}
           />
           <TopPosition>
             <SmallBox
-              imgurl={"https://www.kakaocorp.com/page/ico_responsible.png"}
-              spantxt={"약속과 책임"}
-              strongtxt={"카카오는 당신과 함께 더 나은 세상을 만듭니다."}
+              imgurl='https://www.kakaocorp.com/page/ico_responsible.png'
+              spantxt='약속과 책임'
+              strongtxt='카카오는 당신과 함께 더 나은 세상을 만듭니다.'
               hashtag={dummy.hasharr[4].item.map((value, idx) => (
                 <span key={idx}>{value}</span>
               ))}
             />
           </TopPosition>
         </InnerContaier>
-      </SecLayout>
+      </SecLayout2>
     </AllLayout>
   );
 }
@@ -74,12 +62,44 @@ export default SectionA;
 
 const AllLayout = styled.div`
   display: flex;
+  @media screen and (max-width: 1439px) {
+    flex-wrap: wrap;
+  }
 `;
-const SecLayout = styled.div`
-  width: 630px;
+const SecLayout1 = styled.div`
+  width: 666px;
   height: 1104px;
   padding: 0 18px;
   margin: 0px;
+  box-sizing: border-box;
+  @media screen and (max-width: 1439px) {
+    max-width: 655px;
+    padding: 0 15px;
+    width: auto;
+  }
+  @media screen and (max-width: 1023px) {
+    position: static;
+    height: 800px;
+  }
+`;
+
+const SecLayout2 = styled.div`
+  width: 666px;
+  height: 1104px;
+  padding: 0 18px;
+  margin: 0px;
+  box-sizing: border-box;
+  @media screen and (max-width: 1439px) {
+    max-width: 327px;
+    padding: 0 15px;
+    width: auto;
+  }
+  @media screen and (max-width: 1023px) {
+    max-width: 655px;
+    padding: 0 15px;
+    width: auto;
+    height: auto;
+  }
 `;
 const InnerContaier = styled.div`
   width: 630px;
@@ -89,8 +109,24 @@ const InnerContaier = styled.div`
   justify-content: space-between;
   align-content: space-between;
   padding: 0 18px;
+  @media screen and (max-width: 1439px) {
+    max-width: 327px;
+    width: auto;
+    padding: 0;
+  }
+  @media screen and (max-width: 1023px) {
+    max-width: 655px;
+    width: auto;
+    padding: 0;
+  }
 `;
 const TopPosition = styled.div`
   position: relative;
   top: -228px;
+  @media screen and (max-width: 1439px) {
+    position: static;
+  }
+  @media screen and (max-width: 1023px) {
+    position: relative;
+  }
 `;

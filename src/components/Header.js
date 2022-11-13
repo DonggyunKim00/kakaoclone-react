@@ -16,10 +16,24 @@ function Header({
   const [isPageDown2, setIsPageDown2] = useState("visible");
 
   const showHiddenCal = () => {
-    if (window.scrollY > 100) {
-      setHiddenCal("calVisible");
+    if (window.screen.width > 1439) {
+      if (window.scrollY > 200) {
+        setHiddenCal("calVisible");
+      } else {
+        setHiddenCal("calHidden");
+      }
+    } else if (window.screen.width > 1023 && window.screen.width <= 1439) {
+      if (window.scrollY > 150) {
+        setHiddenCal("calVisible");
+      } else {
+        setHiddenCal("calHidden");
+      }
     } else {
-      setHiddenCal("calHidden");
+      if (window.scrollY > 100) {
+        setHiddenCal("calVisible");
+      } else {
+        setHiddenCal("calHidden");
+      }
     }
   };
   useEffect(() => {
@@ -29,18 +43,37 @@ function Header({
 
   // page down = true, page up = false
   const handlePage = (e) => {
-    if (window.scrollY > 100) {
-      if (e.deltaY > 0) {
-        setIsPageDown("headerHidden");
-        setIsPageDown2("");
-      } else {
-        setIsPageDown("headerVisible");
-        setIsPageDown2("visible");
+    if (window.screen.width > 1439) {
+      if (window.scrollY > 200) {
+        if (e.deltaY > 0) {
+          setIsPageDown("headerHidden");
+          setIsPageDown2("");
+        } else {
+          setIsPageDown("headerVisible");
+          setIsPageDown2("visible");
+        }
+      }
+    } else if (window.screen.width > 1023 && window.screen.width <= 1439) {
+      if (window.scrollY > 150) {
+        if (e.deltaY > 0) {
+          setIsPageDown("headerHidden");
+          setIsPageDown2("");
+        } else {
+          setIsPageDown("headerVisible");
+          setIsPageDown2("visible");
+        }
+      }
+    } else {
+      if (window.scrollY > 100) {
+        if (e.deltaY > 0) {
+          setIsPageDown("headerHidden");
+          setIsPageDown2("");
+        } else {
+          setIsPageDown("headerVisible");
+          setIsPageDown2("visible");
+        }
       }
     }
-    // else if (window.scrollY > 0 && window.scrollY < 100) {
-    //   setIsPageDown(false);
-    // }
   };
   useEffect(() => {
     window.addEventListener("mousewheel", handlePage);
@@ -58,38 +91,36 @@ function Header({
   };
 
   return (
-    <>
-      <HeaderDiv isClick={isClick} burgerClick={burgerClick}>
-        <StyledHeader className={isPageDown}>
-          <div className='maxwidth'>
-            <h1>kakao</h1>
-            <div>
-              <FontAwesomeIcon
-                onClick={onClick}
-                type='button'
-                icon={faMagnifyingGlass}
-                size='2x'
-                className='searchBtn'
-              />
-              <FontAwesomeIcon
-                onClick={onClick2}
-                type='button'
-                icon={faBurger}
-                size='2x'
-              />
-            </div>
+    <HeaderDiv isClick={isClick} burgerClick={burgerClick}>
+      <StyledHeader className={isPageDown}>
+        <div className='maxwidth'>
+          <h1>kakao</h1>
+          <div>
+            <FontAwesomeIcon
+              onClick={onClick}
+              type='button'
+              icon={faMagnifyingGlass}
+              size='2x'
+              className='searchBtn'
+            />
+            <FontAwesomeIcon
+              onClick={onClick2}
+              type='button'
+              icon={faBurger}
+              size='2x'
+            />
           </div>
-        </StyledHeader>
-        <HiddenSec>
-          <HiddenCalHeader id={isPageDown2} className={hiddenCal}>
-            <ContentDiv>
-              <HiddenCalImg imgnum={imgnum} />
-              <HiddenCalStr>오늘의 카카오</HiddenCalStr>
-            </ContentDiv>
-          </HiddenCalHeader>
-        </HiddenSec>
-      </HeaderDiv>
-    </>
+        </div>
+      </StyledHeader>
+      <HiddenSec>
+        <HiddenCalHeader id={isPageDown2} className={hiddenCal}>
+          <ContentDiv>
+            <HiddenCalImg imgnum={imgnum} />
+            <HiddenCalStr>오늘의 카카오</HiddenCalStr>
+          </ContentDiv>
+        </HiddenCalHeader>
+      </HiddenSec>
+    </HeaderDiv>
   );
 }
 
@@ -99,7 +130,8 @@ const HeaderDiv = styled.div`
   position: ${({ isClick }) => (isClick ? "static" : "fixed")};
   z-index: 2;
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
+  margin: 0 auto;
 
   .headerVisible {
     top: 0px;
@@ -109,32 +141,44 @@ const HeaderDiv = styled.div`
     top: -60px;
     transition: top 0.2s ease-in-out;
   }
+
   .maxwidth {
     display: flex;
     justify-content: space-between;
     width: 1296px;
     margin: 0 auto;
+    @media screen and (max-width: 1439px) {
+      max-width: 952px;
+      margin: 0 auto;
+    }
+    @media screen and (max-width: 1023px) {
+      max-width: 630px;
+      margin: 0 auto;
+    }
   }
 `;
 const StyledHeader = styled.div`
   display: flex;
-  border-bottom: 1px solid #eee;
   background-color: white;
   position: relative;
   align-items: center;
   padding-top: 18px;
-  width: 100%;
+  width: 100vw;
   height: 60px;
+  margin: 0 auto;
   box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+
   .searchBtn {
     margin-right: 24px;
   }
 `;
 
 const HiddenSec = styled.div`
-  position: fixed;
+  position: static;
   width: 100%;
   z-index: 4001;
+  top: 0;
 
   .calVisible {
     visibility: visible;
@@ -160,7 +204,6 @@ const HiddenCalHeader = styled.div`
   width: 100%;
 `;
 
-// 여기 고치기 border-bottom 끝까지
 const ContentDiv = styled.div`
   display: flex;
   align-content: center;
@@ -168,6 +211,14 @@ const ContentDiv = styled.div`
   box-sizing: border-box;
   max-width: 1296px;
   margin: 0px auto;
+  @media screen and (max-width: 1439px) {
+    max-width: 952px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 1032px) {
+    max-width: 630px;
+    margin: 0 auto;
+  }
 `;
 const HiddenCalImg = styled.img`
   width: 36px;

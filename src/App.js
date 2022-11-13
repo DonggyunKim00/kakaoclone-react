@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "./components/Header";
 import GlobalStyle from "./components/GlobalStyle";
@@ -9,22 +9,32 @@ import OpenBurger from "./components/onClickitem/OpenBurger";
 
 function App() {
   const [isClick, setIsClick] = useState(false);
-  const [changeClass, setChangeClass] = useState("hidden");
+  const [changeClass1, setChangeClass1] = useState("transHide");
+  const [changeClass2, setChangeClass2] = useState("hide");
   const [burgerClick, setBurgerClick] = useState(false);
   const [burgerClass, setBurgerClass] = useState("closeBurger");
+  const [screenWidth, setScreenWidth] = useState(window.screen.width);
 
+  const screenValue = () => {
+    setScreenWidth(window.screen.width);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", screenValue);
+  }, []);
   const time = new Date();
   let imgnum = time.getDate();
 
   // header의 search 버튼 인지 => isClick : true
   const getClickEvent = (isClick) => {
     setIsClick(isClick);
-    setChangeClass("visible");
+    setChangeClass1("transVisible");
+    setChangeClass2("visible");
   };
   // opensearch의 버튼 인지 => isClick : false
   const getClickEvent2 = (isClick) => {
     setIsClick(isClick);
-    setChangeClass("hidden");
+    setChangeClass1("transHide");
+    setChangeClass2("hide");
   };
   // header의 burger버튼 인지 => isClick : true
   const getClickEvent3 = (burgerClick) => {
@@ -46,16 +56,20 @@ function App() {
       <Header
         isClick={isClick}
         burgerClick={burgerClick}
-        mgnum={imgnum}
+        imgnum={imgnum}
         getClickEvent={getClickEvent}
         getClickEvent3={getClickEvent3}
       />
       <BodyDiv>
-        <Maincontent className={changeClass} imgnum={imgnum} />
-        <Footer />
+        <Maincontent
+          screenWidth={screenWidth}
+          className={changeClass1}
+          imgnum={imgnum}
+        />
       </BodyDiv>
+      <Footer screenWidth={screenWidth} />
       <HiddenOpenSec>
-        <OpenSearch className={changeClass} getClickEvent2={getClickEvent2} />
+        <OpenSearch className={changeClass2} getClickEvent2={getClickEvent2} />
       </HiddenOpenSec>
       <HiddenBurgerSec>
         <OpenBurger className={burgerClass} getClickEvent4={getClickEvent4} />
@@ -76,14 +90,23 @@ const Outer = styled.div`
 const BodyDiv = styled.div`
   max-width: 1296px;
   margin: 0 auto;
-  .visible {
+
+  .transVisible {
     transform: translateY(257px);
     transition: transform 0.6s;
   }
 
-  .hidden {
+  .transHide {
     transform: translateY(0);
     transition: transform 0.6s;
+  }
+  @media screen and (max-width: 1439px) {
+    max-width: 952px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 1023px) {
+    max-width: 660px;
+    margin: 0 auto;
   }
 `;
 const HiddenOpenSec = styled.div`
@@ -93,7 +116,7 @@ const HiddenOpenSec = styled.div`
     transition: opacity 0.6s;
   }
 
-  .hidden {
+  .hide {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.6s, opacity 0.6s;
@@ -106,7 +129,7 @@ const HiddenBurgerSec = styled.div`
     transition: transform 0.3s ease-in-out;
   }
   .closeBurger {
-    transform: translateX(4000px);
+    transform: translateX(1500px);
     transition: transform 0.3s ease-in-out;
   }
 `;

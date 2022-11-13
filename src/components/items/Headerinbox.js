@@ -1,17 +1,11 @@
 import styled from "styled-components";
-import { FaEllipsisV } from "react-icons/fa";
 import Simage from "../myimages/Simage";
 
-function Headerinbox({ imgurl, spantxt, getisClickElip }) {
-  // const onClick = () => {
-  //   getisClickElip(true);
-  // };
-
-  console.log(getisClickElip);
+function Headerinbox({ imgurl, spantxt }) {
   return (
     <>
       <OuterFlex>
-        <div>
+        <div className='height'>
           <Simage
             imageurl={
               imgurl ||
@@ -20,11 +14,8 @@ function Headerinbox({ imgurl, spantxt, getisClickElip }) {
           />
           <SpanBox>
             <BeforeImg />
-            {spantxt || "보도 자료"}
+            {spantxt || "홈"}
           </SpanBox>
-        </div>
-        <div className='colorGray'>
-          <FaEllipsisV type='button' size='20' />
         </div>
       </OuterFlex>
     </>
@@ -37,9 +28,8 @@ const OuterFlex = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 36px;
-
-  .colorGray {
-    color: #bbb;
+  .height {
+    height: 36px;
   }
 `;
 const BeforeImg = styled.div`

@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import Stronginbox from "../items/Stronginbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-function XlargeBox({ strongtxt }) {
+function XlargeBox({ screenWidth }) {
   return (
     <div>
       <XLcontainer>
-        <Stronginbox fontSize={"42px"} strongtxt={strongtxt} />
+        <strong className='str'>
+          기술과 사람으로 {screenWidth <= 1023 && <br />}더 나은 세상을
+          만듭니다.
+        </strong>
         <CultureBtn>
           카카오문화 바로가기
           <FaArrow>
@@ -32,6 +34,25 @@ const XLcontainer = styled.div`
   border-radius: 14px;
   box-shadow: 2px 5px 40px 0 rgb(0 0 0 / 8%);
   box-sizing: border-box;
+  .str {
+    display: block;
+    font-size: 42px;
+    line-height: 62px;
+    color: #000;
+    @media screen and (max-width: 1023px) {
+      font-size: 36px;
+      line-height: 52px;
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: 1439px) {
+    margin-bottom: 0;
+  }
+  @media screen and (max-width: 1023px) {
+    height: auto;
+    margin-top: 36px;
+    padding: 48px 52px 38px;
+  }
 `;
 const CultureBtn = styled.a`
   width: 176px;
@@ -43,6 +64,9 @@ const CultureBtn = styled.a`
   color: #fff;
   box-sizing: border-box;
   background-color: #000;
+  @media screen and (max-width: 1023px) {
+    margin-top: 24px;
+  }
 `;
 const FaArrow = styled.svg`
   width: 15px;
@@ -57,4 +81,12 @@ const Img = styled.div`
   background: url("https://www.kakaocorp.com/page/bg_home_culture_210325.png")
     no-repeat;
   background-size: contain;
+  @media screen and (max-width: 1023px) {
+    background: url("https://www.kakaocorp.com/page/bg_home_culture_s_210325.png")
+      no-repeat;
+    margin-top: 44px 53px 0;
+    background-size: contain;
+    width: 420px;
+    height: 420px;
+  }
 `;
